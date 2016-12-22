@@ -1,4 +1,4 @@
-var myPlayer = new player(100,200,20,10,1,1,1,1,'Ragnar');
+var myPlayer;
 
 function player(HP, MaxHP, hpGainRest, AP, Haste, hasteGainLFT, magicFind, Level, name) {
     this.HP = HP;
@@ -21,10 +21,20 @@ function monster(HP, AP, Haste, Level, name) {
 }
 
 function initialize(){
+	myPlayer = new player(100,100,20,10,1,1,1,1,'Ragnar');
+	$('#goAdventuringBtn').prop("enabled", true);
+	$('#restBtn').prop("enabled", true);
+	$('#goAdventuringBtn').prop("disabled", false);
+	$('#restBtn').prop("disabled", false);
+	clearCombatLog();
 	printToCombatLog("Welcome to boredRPG!");
 	var newName = prompt("What is your heroes name?","Ignar the Destroyer");
 	setPlayerName(newName);
 	updateStatsPanel();
+}
+
+function clearCombatLog(){
+	document.getElementById("combatLog").innerHTML = "";
 }
 
 function updateStatsPanel(){
@@ -64,6 +74,11 @@ function getPlayerName(){
 
 function setPlayerHP(hp){
 	myPlayer.HP = hp;
+	updateStatsPanel();
+}
+
+function setPlayerMaxHP(hp){
+	myPlayer.MaxHP = hp;
 	updateStatsPanel();
 }
 
@@ -116,7 +131,8 @@ function encounterMonster(player){
 		var monsterName = generateMonsterName();
 		printToCombatLog(player.Name+" has encountered "+monsterName+".");
 		var monsterHP = getRndInteger(player.HP-player.AP,player.HP+player.AP);
-		var newMonster = new monster(10, 2, 1, monsterLevel, monsterName);
+		var monsterAP = getRndInteger(player.AP*0.75,player.AP*1.25);
+		var newMonster = new monster(monsterHP, monsterAP, 1, monsterLevel, monsterName);
 		battle(player,newMonster);
 	} else {
 		printToCombatLog("...but there's nothing here!");
@@ -126,14 +142,14 @@ function encounterMonster(player){
 function battle(player,newMonster){
 	while(player.HP > 0 && newMonster.HP > 0){
 		if(player.Haste > newMonster.Haste){
-			newMonster.HP -= player.AP;
-			printToCombatLog(player.Name+" attacks "+newMonster.Name+" causing "+player.AP+" damage.");
+			newMonster.HP = newMonster.HP-player.AP;
+			printToCombatLog(player.Name+" attacks "+newMonster.Name+" causing "+player.AP+" damage. "+newMonster.Name+" has "+newMonster.HP+" health remaining.");
 			updateStatsPanel();
-			player.HP -= newMonster.HP;
-			printToCombatLog(newMonster.Name+" attacks "+player.Name+" causing "+newMonster.AP+" damage.");
+			player.HP -= newMonster.AP;
+			printToCombatLog(newMonster.Name+" attacks "+player.Name+" causing "+newMonster.AP+" damage. "+player.Name+" has "+player.HP+" health remaining.");
 			updateStatsPanel();
 		} else {
-			player.HP -= newMonster.HP;
+			player.HP = player.HP-newMonster.AP;
 			printToCombatLog(newMonster.Name+" attacks "+player.Name+" causing "+newMonster.AP+" damage.");
 			updateStatsPanel();
 			newMonster.HP -= player.AP;
@@ -141,14 +157,22 @@ function battle(player,newMonster){
 			updateStatsPanel();
 		}
 	}
+	
+	if (newMonster.HP <=0){
+		setPlayerLevel(player.Level+1);
+		setPlayerAP(Math.floor(player.AP*1.1));
+		setPlayerMaxHP(Math.floor(player.MaxHP*1.1));
+		setPlayerHP(player.MaxHP);
+		printToCombatLog(newMonster.Name+" was killed by "+player.Name+"!");
+		printToCombatLog("You have leveled up to level "+player.Level+"!");
+	}
 	if (player.HP <= 0){
 		printToCombatLog(player.Name+" was killed by "+newMonster.Name+"!");
 		printToCombatLog("--- G A M E    O V E R ---");
-	}
-	if (newMonster.HP <=0){
-		setPlayerLevel(player.Level+1);
-		printToCombatLog(newMonster.Name+" was killed by "+player.Name+"!");
-		printToCombatLog("You have leveled up to level "+player.Level+"!");
+		$('#goAdventuringBtn').prop("disabled", true);
+		$('#restBtn').prop("disabled", true);
+		$('#goAdventuringBtn').prop("enabled", false);
+		$('#restBtn').prop("enabled", false);
 	}
 }
 
