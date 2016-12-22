@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+		<script src="js/boredRPG.js"></script>
+	</head>
+	<body>
+		<textarea readonly id="combatLog" rows="4" cols="100"></textarea>
+		<div id="statsPanel">
+		<div id="statsPanelLeft"></div>
+		<div id="statsPanelRight"></div>
+		</div>
+
+		<div id="controlPanel">
+		<button class="noselect" onclick="lookForTrouble()">Go Adventuring</button>
+		<button class="noselect" onclick="rest()">Rest</button>
+		</div>
+
+		<script>
+			$( document ).ready(function() {
+				initialize();
+			});
+		</script>
+	</body>
+</html>
