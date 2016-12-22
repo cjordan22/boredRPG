@@ -20,7 +20,7 @@ function monster(HP, AP, Haste, Level, name) {
 	this.Name = name;
 }
 
-function initialize(){
+function newGame(){
 	myPlayer = new player(100,100,20,10,1,1,1,1,'Ragnar');
 	$('#goAdventuringBtn').prop("enabled", true);
 	$('#restBtn').prop("enabled", true);
