@@ -29,6 +29,18 @@
 			</div>
 			</div>
 			<div class="row">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">Controls</h3>
+				</div>
+				<div class="panel-body">
+					<button id="goAdventuringBtn" class="noselect btn btn-success" onclick="lookForTrouble()">Go Adventuring</button>
+					<button id="restBtn" class="noselect btn btn-primary" onclick="rest()">Rest</button>
+					<button id="newGameBtn" class="noselect btn btn-danger" onclick="newGame()">New Game</button>
+				</div>
+			</div>
+			</div>
+			<div class="row">
 			<div id="statsPanel" class="well col-md-6">
 				<div class="panel panel-default">
 					<div class="panel-body">
@@ -46,22 +58,10 @@
 				</div>
 			</div>
 			</div>
-			<div class="row">
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<h3 class="panel-title">Controls</h3>
-				</div>
-				<div class="panel-body">
-					<button id="goAdventuringBtn" class="noselect btn btn-success" onclick="lookForTrouble()">Go Adventuring</button>
-					<button id="restBtn" class="noselect btn btn-primary" onclick="rest()">Rest</button>
-					<button id="newGameBtn" class="noselect btn btn-danger" onclick="newGame()">New Game</button>
-				</div>
-			</div>
-			</div>
 		</div>
 		<script>
 			$( document ).ready(function() {
-				newGame();
+				initialize();
 			});
 		</script>
 	</body>
