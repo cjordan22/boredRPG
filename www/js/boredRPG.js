@@ -161,6 +161,9 @@ function battle(player,newMonster){
 			newMonster.HP = newMonster.HP-player.AP;
 			printToCombatLog(player.Name+" attacks "+newMonster.Name+" causing "+player.AP+" damage. "+newMonster.Name+" has "+newMonster.HP+" health remaining.");
 			updateStatsPanel();
+			if(newMonster.HP <= 0){
+				break;
+			}
 			player.HP -= newMonster.AP;
 			printToCombatLog(newMonster.Name+" attacks "+player.Name+" causing "+newMonster.AP+" damage. "+player.Name+" has "+player.HP+" health remaining.");
 			updateStatsPanel();
@@ -168,6 +171,9 @@ function battle(player,newMonster){
 			player.HP = player.HP-newMonster.AP;
 			printToCombatLog(newMonster.Name+" attacks "+player.Name+" causing "+newMonster.AP+" damage.");
 			updateStatsPanel();
+			if(player.HP <= 0){
+				break;
+			}
 			newMonster.HP -= player.AP;
 			printToCombatLog(player.Name+" attacks "+newMonster.Name+" causing "+player.AP+" damage.");
 			updateStatsPanel();
