@@ -1,9 +1,9 @@
 #combatLog{
-	border-style:solid;
-	border-width:1px;
-	height:200px;
+	border-style:none;
+	width:100%;
 	resize: none;
 	font-family: monospace !important;
+	height: 300px;
 }
 .noselect {
     -webkit-touch-callout: none;

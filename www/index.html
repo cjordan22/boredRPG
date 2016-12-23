@@ -1,24 +1,64 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<!-- Start CSS -->
+		<!-- Bootswatch -->
+		<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css" rel="stylesheet" integrity="sha384-gv0oNvwnqzF6ULI9TVsSmnULNb3zasNysvWwfT/s4l8k5I+g6oFz9dye0wg3rQ2Q" crossorigin="anonymous">
+		<!-- Custom CSS -->
 		<link rel="stylesheet" type="text/css" href="css/style.css">
-
+		<!-- End CSS -->
+		
+		<!-- Start JavaScript -->
+		<!-- jQuery -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+		<!-- Custom JS -->
 		<script src="js/boredRPG.js"></script>
+		<!-- End JavaScript -->
 	</head>
 	<body>
-		<textarea readonly id="combatLog" rows="4" cols="100"></textarea>
-		<div id="statsPanel">
-		<div id="statsPanelLeft"></div>
-		<div id="statsPanelRight"></div>
+		<div class="container">
+			<h1 class="text-center">boredRPG</h1>
+			<div class="row">
+			<div class="panel panel-warning">
+				<div class="panel-heading">
+					<h3 class="panel-title">Combat Log</h3>
+				</div>
+				<div class="panel-body">
+					<textarea readonly id="combatLog" class="noselect"></textarea>
+				</div>
+			</div>
+			</div>
+			<div class="row">
+			<div id="statsPanel" class="well col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<div id="statsPanelLeft"></div>
+						<div id="statsPanelRight"></div>
+					</div>
+				</div>
+			</div>
+			<div id="enemyStatsPanel" class="well col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<div id="enemyStatsPanelLeft"><em>Placeholder for enemy panel</em><br>Lorem Ipsum<br>Dolor<br>Sit Amet<br>&nbsp;</div>
+						<div id="enemyStatsPanelRight"></div>
+					</div>
+				</div>
+			</div>
+			</div>
+			<div class="row">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">Controls</h3>
+				</div>
+				<div class="panel-body">
+					<button id="goAdventuringBtn" class="noselect btn btn-success" onclick="lookForTrouble()">Go Adventuring</button>
+					<button id="restBtn" class="noselect btn btn-primary" onclick="rest()">Rest</button>
+					<button id="newGameBtn" class="noselect btn btn-danger" onclick="newGame()">New Game</button>
+				</div>
+			</div>
+			</div>
 		</div>
-
-		<div id="controlPanel">
-		<button id="goAdventuringBtn" class="noselect" onclick="lookForTrouble()">Go Adventuring</button>
-		<button id="restBtn" class="noselect" onclick="rest()">Rest</button>
-		<button id="newGameBtn" class="noselect" onclick="newGame()">New Game</button>
-		</div>
-
 		<script>
 			$( document ).ready(function() {
 				newGame();

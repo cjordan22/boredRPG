@@ -21,6 +21,14 @@ function monster(HP, AP, Haste, Level, name) {
 }
 
 function newGame(){
+	if (confirm('Are you sure you want to start a new game?')) {
+		initialize();
+	} else {
+		// Do nothing!
+	}
+}
+
+function initialize(){
 	myPlayer = new player(100,100,20,10,1,1,1,1,'Ragnar');
 	$('#goAdventuringBtn').prop("enabled", true);
 	$('#restBtn').prop("enabled", true);
@@ -28,6 +36,14 @@ function newGame(){
 	$('#restBtn').prop("disabled", false);
 	clearCombatLog();
 	printToCombatLog("Welcome to boredRPG!");
+	printToCombatLog("--------------------");
+	printToCombatLog("Click 'GO ADVENTURING' to venture into forest, but beware of dangerous monsters!");
+	printToCombatLog("As you adventure, you will gain Haste. If you have higher haste than a monster, you'll attack first.");
+	printToCombatLog("If you are injured after a battle, click 'REST' to regain your health.");
+	printToCombatLog("Resting lowers your haste.");
+	printToCombatLog("");
+	printToCombatLog("Good luck!");
+	printToCombatLog("--------------------\n");
 	var newName = prompt("What is your heroes name?","Ignar the Destroyer");
 	setPlayerName(newName);
 	updateStatsPanel();
